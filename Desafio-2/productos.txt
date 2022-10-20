@@ -1,0 +1,20 @@
+[
+  {
+    "title": "El nombre del viento",
+    "price": 7000,
+    "thumbnail": "https://images.cdn3.buscalibre.com/fit-in/360x360/a7/90/a790dff70defe5c61b66fd73716b6e30.jpg",
+    "id": 1
+  },
+  {
+    "title": "El temor de un hombre Sabio",
+    "price": 8500,
+    "thumbnail": "https://www.popularlibros.com/imagenes.webp_grandes/9788401/978840133963.webp",
+    "id": 2
+  },
+  {
+    "title": "Las puertas de piedra",
+    "price": 10000,
+    "thumbnail": "http://www.cronicadelasesinodereyes.com/wp-content/uploads/2017/02/las-puertas-de-piedra.jpg",
+    "id": 3
+  }
+]
