@@ -1,0 +1,15 @@
+extend layouts/index.pug
+
+block content
+    form(action="/form", method="POST") 
+        div 
+            label(for="titulo")  Título:
+            input(type="text" id="titulo" name="title")
+        div 
+            label(for="precio") Precio: 
+            input(type="number" id="precio" name="price")
+        div 
+            label(for="Url") Url img:
+            input(type="text" id="Url" name="thumbnail")
+        button(type="submit") Agregar Producto
+        

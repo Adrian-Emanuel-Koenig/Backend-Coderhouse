@@ -1,0 +1,19 @@
+extend layouts/index.pug
+
+block content
+    h1= mensaje 
+        if productsExist
+            div(class="container") 
+                div(class="lista")
+                    h4= "Nombre" 
+                    h4= "Precio"
+                    h4= "Foto"
+                for item in productos 
+                    div(class="listaProductos") 
+                        p=item.title 
+                        p=item.price 
+                        div
+                            img(src=item.thumbnail)
+        else
+            br 
+            h2="No se encontraron productos"
