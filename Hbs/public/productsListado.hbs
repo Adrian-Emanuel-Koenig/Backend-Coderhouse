@@ -1,0 +1,9 @@
+{{#if products}}
+  {{#each products}}
+    <div class='lista'>
+      {{this.title}}
+      {{this.price}}
+      <img src='{{this.thumbnail}}' class='product-img' />
+    </div>
+  {{/each}}
+{{/if}}
