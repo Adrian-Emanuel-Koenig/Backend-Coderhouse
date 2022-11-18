@@ -1,33 +1,15 @@
 const express = require('express');
-const { Router } = express;
-const router = Router();
 const app = express();
-const port = process.env.PORT || 8080;
 const Contenedor = require('./container.js');
 const Productos = new Contenedor('productos.txt');
+const Chats = new Contenedor('chat.txt');
 const { engine } = require('express-handlebars');
-
-app.use('/api/productos', router);
+const httpServer = require('http').createServer(app);
+const io = require('socket.io')(httpServer);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/public', express.static(__dirname + '/public/'));
-
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
-});
-
-app.get('/form', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
-
-app.post('/form', (req, res) => {
-  const { body } = req;
-  Productos.save(body);
-  res.json('Producto agregado');
-  console.log(body);
-});
-
 app.set('view engine', 'hbs');
 app.set('views', './views');
 app.engine(
@@ -39,13 +21,41 @@ app.engine(
     partialsDir: __dirname + '/views/partials',
   })
 );
+httpServer.listen(8000, () => console.log('SERVER ON http://localhost:' + 8000));
+
+app.get('/form', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+app.post('/form', (req, res) => {
+  const { body } = req;
+  Productos.save(body);
+  // res.json('Producto agregado');
+  console.log(body);
+});
 
 app.get('/productos', async (req, res) => {
   const products = await Productos.getAll();
-  res.render('productslist', {products, productsExist: true });
+  res.render('productslist', { products, productsExist: true });
 });
 
-app.get('/', (req, res)=>{
-  res.render('form')
-})
+app.get('/', async (req, res) => {
+  const products = await Productos.getAll();
+  res.render('home', { products, productsExist: true });
+});
 
+io.on('connection', (socket) => {
+  console.log('usuario conectado');
+
+  socket.on('msg', async (data) => {
+    console.log(data);
+    await Chats.save({ hora: Date(), ...data });
+    io.sockets.emit('msg-list', await Chats.getAll());
+  });
+
+  // socket.on('productos', async (data) => {
+  //   console.log(data);
+  //   const products = await Productos.getAll();
+  //   io.sockets.emit('listaProductos', products);
+  // });
+});

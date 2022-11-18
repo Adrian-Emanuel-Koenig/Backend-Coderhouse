@@ -1,43 +1,42 @@
-    {{> navbar}}
-
-    <form
+    <form 
+    onsubmit=sendMsg(); return false
     action="/form"
     method="POST"
     class="d-flex justify-content-center align-items-center flex-column"
     style="height: 100vh"
 >
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
+        <label for="title" class="form-label"
             >Title</label
         >
         <input
             type="text"
             class="form-control"
-            id="exampleInputEmail1"
+            id="title"
             aria-describedby="emailHelp"
             name="title"
         />
     </div>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
+        <label for="price" class="form-label"
             >Price</label
         >
         <input
             type="number"
             class="form-control"
-            id="exampleInputEmail1"
+            id="price"
             aria-describedby="emailHelp"
             name="price"
         />
     </div>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
+        <label for="thumbnail" class="form-label"
             >Img URL</label
         >
         <input
             type="text"
             class="form-control"
-            id="exampleInputEmail1"
+            id="thumbnail"
             aria-describedby="emailHelp"
             name="thumbnail"
         />
@@ -46,3 +45,5 @@
         Upload product
     </button>
     </form>
+
+    <div id="listaDeProductos"></div>
