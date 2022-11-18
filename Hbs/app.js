@@ -6,6 +6,7 @@ const Chats = new Contenedor('chat.txt');
 const { engine } = require('express-handlebars');
 const httpServer = require('http').createServer(app);
 const io = require('socket.io')(httpServer);
+const port = process.env.port || 8000
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,23 +22,24 @@ app.engine(
     partialsDir: __dirname + '/views/partials',
   })
 );
-httpServer.listen(8000, () => console.log('SERVER ON http://localhost:' + 8000));
+
+httpServer.listen(port, () => console.log('SERVER ON http://localhost:' + port));
 
 app.get('/form', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/form', (req, res) => {
-  const { body } = req;
-  Productos.save(body);
-  // res.json('Producto agregado');
-  console.log(body);
-});
+// app.post('/form', (req, res) => {
+//   const { body } = req;
+//   Productos.save(body);
+//   // res.json('Producto agregado');
+//   console.log(body);
+// });
 
-app.get('/productos', async (req, res) => {
-  const products = await Productos.getAll();
-  res.render('productslist', { products, productsExist: true });
-});
+// app.get('/productos', async (req, res) => {
+//   const products = await Productos.getAll();
+//   res.render('productslist', { products, productsExist: true });
+// });
 
 app.get('/', async (req, res) => {
   const products = await Productos.getAll();
@@ -53,9 +55,10 @@ io.on('connection', (socket) => {
     io.sockets.emit('msg-list', await Chats.getAll());
   });
 
-  // socket.on('productos', async (data) => {
-  //   console.log(data);
-  //   const products = await Productos.getAll();
-  //   io.sockets.emit('listaProductos', products);
-  // });
+  socket.on('productoEnviado', saveProduct);
 });
+
+async function saveProduct(data) {
+  await Productos.save(data);
+  Productos.getAll().then((element) => io.sockets.emit('allProducts', element));
+}
