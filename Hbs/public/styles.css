@@ -1,93 +1,120 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-body{
-    background: url(https://fondosmil.com/fondo/27741.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+body {
+  background: url(https://fondosmil.com/fondo/27741.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
-img{
-    height: 200px;
-    width: 150px;
+img {
+  height: 200px;
+  width: 150px;
 }
-h1{
-    color: blue;
-    text-shadow: 0 0 1
-    px black;
-    text-align: center;
+h1 {
+  color: blue;
+  text-shadow: 0 0 1 px black;
+  text-align: center;
 }
-header{
-    font-size: 2rem;
+header {
+  font-size: 2rem;
 }
-ul{
-    display: flex;
-    text-align: center;
-    justify-content: space-around;
-    list-style: none;
+ul {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  list-style: none;
 }
-a{
-text-decoration: none;
-color: black;
-text-shadow: 0 0 1px black;
+a {
+  text-decoration: none;
+  color: black;
+  text-shadow: 0 0 1px black;
 }
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
 }
-form div{
-    display: flex;
-    flex-direction: column;
+form div {
+  display: flex;
+  flex-direction: column;
 }
-form button{
-    font-size: 1.8rem;
+form button {
+  font-size: 1.8rem;
 }
-label{
-    font-size: 1.2rem;
+label {
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
 }
-input{
-    width: 400px;
-    height: 50px;
-    font-size: 1.2rem;
-    padding: 1%;
+input {
+  width: 400px;
+  height: 50px;
+  font-size: 1.2rem;
+  padding: 1%;
 }
-.container{
-    margin: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+.container {
+  margin: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.lista{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 1.4rem;
-    padding: 20px 0;
+.lista {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 1.4rem;
+  padding: 20px 0;
 }
-.listaProductos{
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: space-between;
+.listaProductos {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
 }
-.listaProductos p{
-    width: 33%;
+.listaProductos p {
+  width: 33%;
 }
-.listaProductos div{
-    width: 34%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.listaProductos div {
+  width: 34%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#containerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#div-list-msgs {
+  margin: 20px;
+  padding: 1%;
+  width: 80%;
+  height: 400px;
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid black;
+}
+#mensajeForm {
+  font-style: italic;
+  color: green;
+}
+#emailForm {
+  color: blue;
+}
+#fecha{
+    color: brown;
 }
