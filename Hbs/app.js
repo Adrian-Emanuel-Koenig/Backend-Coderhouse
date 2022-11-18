@@ -6,11 +6,11 @@ const Chats = new Contenedor('chat.txt');
 const { engine } = require('express-handlebars');
 const httpServer = require('http').createServer(app);
 const io = require('socket.io')(httpServer);
-const port = process.env.port || 8000
+const port = process.env.port || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/public', express.static(__dirname + '/public/'));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 app.set('views', './views');
 app.engine(
@@ -25,32 +25,14 @@ app.engine(
 
 httpServer.listen(port, () => console.log('SERVER ON http://localhost:' + port));
 
-app.get('/form', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
-
-// app.post('/form', (req, res) => {
-//   const { body } = req;
-//   Productos.save(body);
-//   // res.json('Producto agregado');
-//   console.log(body);
-// });
-
-// app.get('/productos', async (req, res) => {
-//   const products = await Productos.getAll();
-//   res.render('productslist', { products, productsExist: true });
-// });
-
 app.get('/', async (req, res) => {
-  const products = await Productos.getAll();
-  res.render('home', { products, productsExist: true });
+  res.render('home');
 });
 
-io.on('connection', (socket) => {
-  console.log('usuario conectado');
-
+io.on('connection', async (socket) => {
+  const products = await Productos.getAll();
+  socket.emit('allProducts', products);
   socket.on('msg', async (data) => {
-    console.log(data);
     await Chats.save({ hora: Date(), ...data });
     io.sockets.emit('msg-list', await Chats.getAll());
   });

@@ -6,7 +6,7 @@ const socket = io();
 const containerProducto = document.getElementById('containerProducto');
 const sendForm = document.getElementById('sendForm');
 
-/* -------------------------------- Funciones ------------------------------- */
+/* -------------------------------- Functions ------------------------------- */
 
 function addProduct(e) {
   e.preventDefault();
@@ -15,24 +15,15 @@ function addProduct(e) {
   socket.emit('productoEnviado', productToSend);
 }
 
-const renderProductList = async(data) => {
-  fetch(`${API}/productsListado.hbs`)
-      .then(res => res.text())
-      .then(res => {
-          const template = Handlebars.compile(res)
-          containerProducto.innerHTML = template({products: data})
-      })
+function renderProducts(data) {
+  console.log(data)
+  fetch(`${API}/productsList.handlebars`)
+    .then((res) => res.text())
+    .then((res) => {
+      const template = Handlebars.compile(res);
+      containerProducto.innerHTML = template({ products: data });
+    });
 }
-
-// function renderProducts(data) {
-//   console.log(data)
-//   fetch(`${API}productsList.handlebars`)
-//     .then((res) => res.text())
-//     .then((res) => {
-//       const template = Handlebars.compile(res);
-//       containerProducto.innerHTML = template({ products: data });
-//     });
-// }
 
 function enviarMsg() {
   const email = document.getElementById('input-email').value;
@@ -50,7 +41,7 @@ socket.on('msg', (data) => {
   console.log(data);
 });
 
-socket.on('allProducts', renderProductList);
+socket.on('allProducts', renderProducts);
 
 socket.on('msg-list', (data) => {
   console.log('msg-list', data);
