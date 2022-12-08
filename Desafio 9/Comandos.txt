@@ -1,0 +1,330 @@
+
+> use ecommerce
+switched to db ecommerce
+> db.createCollection("mensajes")
+{ "ok" : 1 }
+> db.createCollection("productos")
+{ "ok" : 1 }
+
+
+> db.productos.insert({nombre: "El nombre del viento", precio 3500, img: "img1", codigo: 11101, timestamp: ISODate()})
+WriteResult({ "nInserted" : 1 })
+
+> db.productos.insert([{nombre: "El temor de un hombre sabio", precio: 4000, img: "img2", codigo: 11102, timestamp: ISODate()},{nombre: "Las puertas de piedra", precio: 4990, img: "img3", codigo: 11103, timestamp: ISODate()}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.productos.insert([{nombre: "El Hobbit", precio: 1500, img: "img7", codigo: 11107, timestamp: ISODate()},{nombre: "El señor de los anillos: La comunidad del anillo", precio: 2990, img: "img4", codigo: 11104, timestamp: ISODate()},{nombre: "El señor de los anillos: Las dos torres", precio: 3200, img: "img5", codigo: 11105, timestamp: ISODate()},{nombre: "El señor de los anillos: El retorno del rey", precio: 3500, img: "img6", codigo: 11106, timestamp: ISODate()}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 4,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.productos.insertMany([{nombre: "El eternauta", precio: 500, img: "img8", codigo: 11108, timestamp: ISODate()},{nombre: "Martin Fierro", precio: 790, img: "img9", codigo: 11109, timestamp: ISODate()},{nombre: "Forrest Gump", precio: 900, img: "img10", codigo: 11110, timestamp: ISODate()}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("639256b1ff9c529e0fad07f3"),
+                ObjectId("639256b1ff9c529e0fad07f4"),
+                ObjectId("639256b1ff9c529e0fad07f5")
+        ]
+}
+> db.mensajes.insertMany([{email: "adrian@gmail.com", mensaje: "1", hora: ISODate()}, {email: "koenig@gmail.com", mensaje: "2", hora: ISODate()}, {email: "asd@gmail.com", mensaje: "3", hora: ISODate()},{email: "dsa@gmail.com", mensaje: "4", hora: ISODate()},{email: "adrian@gmail.com", mensaje: "5", hora: ISODate()}, {email:"koenig@gmail.com", mensaje: "6", hora: ISODate()},{email:"adrian@gmail.com", mensaje: "7", hora: ISODate()}, {email:"dsa@gmail.com", mensaje:"8", hora: ISODate()},{email:"asd@gmail.com", mensaje:"9", hora: ISODate()},{email:"koenig@gmail.com", mensaje:"10", hora: ISODate()}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("639259c0373fc5ed4407e4e2"),
+                ObjectId("639259c0373fc5ed4407e4e3"),
+                ObjectId("639259c0373fc5ed4407e4e4"),
+                ObjectId("639259c0373fc5ed4407e4e5"),
+                ObjectId("639259c0373fc5ed4407e4e6"),
+                ObjectId("639259c0373fc5ed4407e4e7"),
+                ObjectId("639259c0373fc5ed4407e4e8"),
+                ObjectId("639259c0373fc5ed4407e4e9"),
+                ObjectId("639259c0373fc5ed4407e4ea"),
+                ObjectId("639259c0373fc5ed4407e4eb")
+        ]
+}
+> db.mensajes.find().pretty()
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e2"),
+        "email" : "adrian@gmail.com",
+        "mensaje" : "1",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e3"),
+        "email" : "koenig@gmail.com",
+        "mensaje" : "2",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e4"),
+        "email" : "asd@gmail.com",
+        "mensaje" : "3",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e5"),
+        "email" : "dsa@gmail.com",
+        "mensaje" : "4",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e6"),
+        "email" : "adrian@gmail.com",
+        "mensaje" : "5",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e7"),
+        "email" : "koenig@gmail.com",
+        "mensaje" : "6",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e8"),
+        "email" : "adrian@gmail.com",
+        "mensaje" : "7",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4e9"),
+        "email" : "dsa@gmail.com",
+        "mensaje" : "8",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4ea"),
+        "email" : "asd@gmail.com",
+        "mensaje" : "9",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+{
+        "_id" : ObjectId("639259c0373fc5ed4407e4eb"),
+        "email" : "koenig@gmail.com",
+        "mensaje" : "10",
+        "hora" : ISODate("2022-12-08T21:40:16.743Z")
+}
+
+> db.productos.find().pretty()
+{
+        "_id" : ObjectId("63924e0bf27be9f32ccf1b40"),
+        "nombre" : "El nombre del viento",
+        "precio" : 3500,
+        "img" : "img1",
+        "codigo" : 11101,
+        "timestamp" : ISODate("2022-12-08T20:50:19.310Z")
+}
+{
+        "_id" : ObjectId("63925305ff9c529e0fad07ed"),
+        "nombre" : "El temor de un hombre sabio",
+        "precio" : 4000,
+        "img" : "img2",
+        "codigo" : 11102,
+        "timestamp" : ISODate("2022-12-08T21:11:33.846Z")
+}
+{
+        "_id" : ObjectId("63925305ff9c529e0fad07ee"),
+        "nombre" : "Las puertas de piedra",
+        "precio" : 4990,
+        "img" : "img3",
+        "codigo" : 11103,
+        "timestamp" : ISODate("2022-12-08T21:11:33.846Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07ef"),
+        "nombre" : "El Hobbit",
+        "precio" : 1500,
+        "img" : "img7",
+        "codigo" : 11107,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07f0"),
+        "nombre" : "El señor de los anillos: La comunidad del anillo",
+        "precio" : 2990,
+        "img" : "img4",
+        "codigo" : 11104,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07f1"),
+        "nombre" : "El señor de los anillos: Las dos torres",
+        "precio" : 3200,
+        "img" : "img5",
+        "codigo" : 11105,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07f2"),
+        "nombre" : "El señor de los anillos: El retorno del rey",
+        "precio" : 3500,
+        "img" : "img6",
+        "codigo" : 11106,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("639256b1ff9c529e0fad07f3"),
+        "nombre" : "El eternauta",
+        "precio" : 500,
+        "img" : "img8",
+        "codigo" : 11108,
+        "timestamp" : ISODate("2022-12-08T21:27:13.087Z")
+}
+{
+        "_id" : ObjectId("639256b1ff9c529e0fad07f4"),
+        "nombre" : "Martin Fierro",
+        "precio" : 790,
+        "img" : "img9",
+        "codigo" : 11109,
+        "timestamp" : ISODate("2022-12-08T21:27:13.087Z")
+}
+{
+        "_id" : ObjectId("639256b1ff9c529e0fad07f5"),
+        "nombre" : "Forrest Gump",
+        "precio" : 900,
+        "img" : "img10",
+        "codigo" : 11110,
+        "timestamp" : ISODate("2022-12-08T21:27:13.087Z")
+}
+
+> db.mensajes.estimatedDocumentCount()
+10
+> db.productos.estimatedDocumentCount()
+10
+
+> db.productos.insertOne({nombre: "Eragon", precio: 2700, img: "img11", codigo: 11111, timestamp: ISODate()})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("63925e0b373fc5ed4407e4ec")
+}
+
+> db.productos.find({precio:{$lt: 1000}}).pretty()
+{
+        "_id" : ObjectId("639256b1ff9c529e0fad07f3"),
+        "nombre" : "El eternauta",
+        "precio" : 500,
+        "img" : "img8",
+        "codigo" : 11108,
+        "timestamp" : ISODate("2022-12-08T21:27:13.087Z")
+}
+{
+        "_id" : ObjectId("639256b1ff9c529e0fad07f4"),
+        "nombre" : "Martin Fierro",
+        "precio" : 790,
+        "img" : "img9",
+        "codigo" : 11109,
+        "timestamp" : ISODate("2022-12-08T21:27:13.087Z")
+}
+{
+        "_id" : ObjectId("639256b1ff9c529e0fad07f5"),
+        "nombre" : "Forrest Gump",
+        "precio" : 900,
+        "img" : "img10",
+        "codigo" : 11110,
+        "timestamp" : ISODate("2022-12-08T21:27:13.087Z")
+}
+
+> db.productos.find({precio:{$gt: 1000, $lt: 3000}}).pretty()
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07ef"),
+        "nombre" : "El Hobbit",
+        "precio" : 1500,
+        "img" : "img7",
+        "codigo" : 11107,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07f0"),
+        "nombre" : "El señor de los anillos: La comunidad del anillo",
+        "precio" : 2990,
+        "img" : "img4",
+        "codigo" : 11104,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("63925e0b373fc5ed4407e4ec"),
+        "nombre" : "Eragon",
+        "precio" : 2700,
+        "img" : "img11",
+        "codigo" : 11111,
+        "timestamp" : ISODate("2022-12-08T21:58:35.064Z")
+}
+
+> db.productos.find({precio:{$gt: 3000}}).pretty()
+{
+        "_id" : ObjectId("63924e0bf27be9f32ccf1b40"),
+        "nombre" : "El nombre del viento",
+        "precio" : 3500,
+        "img" : "img1",
+        "codigo" : 11101,
+        "timestamp" : ISODate("2022-12-08T20:50:19.310Z")
+}
+{
+        "_id" : ObjectId("63925305ff9c529e0fad07ed"),
+        "nombre" : "El temor de un hombre sabio",
+        "precio" : 4000,
+        "img" : "img2",
+        "codigo" : 11102,
+        "timestamp" : ISODate("2022-12-08T21:11:33.846Z")
+}
+{
+        "_id" : ObjectId("63925305ff9c529e0fad07ee"),
+        "nombre" : "Las puertas de piedra",
+        "precio" : 4990,
+        "img" : "img3",
+        "codigo" : 11103,
+        "timestamp" : ISODate("2022-12-08T21:11:33.846Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07f1"),
+        "nombre" : "El señor de los anillos: Las dos torres",
+        "precio" : 3200,
+        "img" : "img5",
+        "codigo" : 11105,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+{
+        "_id" : ObjectId("639254f5ff9c529e0fad07f2"),
+        "nombre" : "El señor de los anillos: El retorno del rey",
+        "precio" : 3500,
+        "img" : "img6",
+        "codigo" : 11106,
+        "timestamp" : ISODate("2022-12-08T21:19:49.807Z")
+}
+
+> db.productos.find().sort({precio: 1}).limit(3).skip(2).limit(1)
+{ "_id" : ObjectId("639256b1ff9c529e0fad07f5"), "nombre" : "Forrest Gump", "precio" : 900, "img" : "img10", "codigo" : 11110, "timestamp" : ISODate("2022-12-08T21:27:13.087Z") }
+
+> db.productos.updateMany({precio:{$gt: 1}},{$set:{stock: 100}})
+{ "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 11 }
+
+> db.productos.updateMany({precio:{$gt: 4000}},{$set:{stock: 0}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.productos.deleteMany({precio:{$lt:1000}})
+{ "acknowledged" : true, "deletedCount" : 3 }
+
+> db.createUser({user: "pepe", pwd: "asd456", roles:[{role: "read", db: "ecommerce"}]})
+Successfully added user: {
+        "user" : "pepe",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "ecommerce"
+                }
+        ]
+}
